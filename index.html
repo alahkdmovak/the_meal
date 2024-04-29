@@ -10,52 +10,86 @@
     <script type="module" src="scripts/getApis.js" defer ></script>
     <script type="module" src="scripts/api.js" defer ></script>
     <script type="module" src="scripts/index.js" defer ></script>
+    <script type="module" src="scripts/displayRes.js" defer ></script>
+    <script type="module" src="scripts/createCards.js" defer ></script>
+    <script type="module" src="scripts/createOnlyCard.js" defer ></script>
 
-    <title>Document</title>
+    <title>The Meals</title>
 </head>
 
 <body>
-    <div class="w-screen h-screen p-8 flex justify-center items-center">
-        <div class="flex flex-col gap-4 items-center">
+    <div class="w-screen h-screen p-8 flex justify-center items-center gap-20">
+        <div class="flex flex-col gap-4 items-center w-full max-w-[40%]">
             <h1 class="text-6xl font-bold text-center text-white">The Meals</h1>
             <div class="flex items-center gap-4">
                 <input id="input-search" type="text"
                     class="max-w-[200px] border-[2px] border-stone-200 rounded-lg p-2 outline-none focus:border-emerald-700 transition-all duration-200 text-sm text-zinc-600">
-                <div class="relative">
-                    <div
-                        id="dropdown"
-                        class="inline-flex cursor-pointer justify-center w-[200px] rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-emerald-700">
-                        <p id="dropdown-button-text">Selecciona...</p>
-                        <!-- Flecha del dropdown -->
-                        <svg id="dropdownIcon" class="-mr-1 ml-2 h-5 w-5 transition-transform transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 8.293l-4.146 4.147a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 8.293z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div id="dropdownMenu"
-                        class="absolute z-10 mt-2 w-[200px] bg-white rounded-md shadow-lg origin-top-left hidden">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <a id="option1" href="#" 
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Nombre de plato</a>
-                            <a id="option2" href="#" 
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Categoria</a>
-                            <a id="option3" href="#" 
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Ingrediente principal</a>
-                            <a id="option4" href="#" 
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                role="menuitem">Area</a>
-                        </div>
-                    </div>
-                </div>
+               
                 <div
                     id="button-search"
                     class="flex items-center justify-center p-2 bg-emerald-600 hover:bg-emerald-500 transition-all duration-300 w-10 h-10 rounded-full cursor-pointer">
                     <img src="./assets/icon-search.svg" alt="">
                 </div>
             </div>
+            <p id="error-message" class="hidden text-sm text-red-500 font-semibold">¡Por favor, introduce una búsqueda válida!</p>
+            <div class="relative">
+                <div
+                    id="dropdown"
+                    class="inline-flex cursor-pointer justify-center w-[200px] rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-emerald-700">
+                    <p id="dropdown-button-text">Selecciona...</p>
+                    <!-- Flecha del dropdown -->
+                    <svg id="dropdownIcon" class="-mr-1 ml-2 h-5 w-5 transition-transform transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 8.293l-4.146 4.147a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 8.293z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div id="dropdownMenu"
+                    class="absolute z-10 mt-2 w-[200px] bg-white rounded-md shadow-lg origin-top-left hidden">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <a id="option1" href="#" 
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            role="menuitem">Nombre de plato</a>
+                        <a id="option2" href="#" 
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            role="menuitem">Categoria</a>
+                        <a id="option3" href="#" 
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            role="menuitem">Ingrediente principal</a>
+                        <a id="option4" href="#" 
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                            role="menuitem">Area</a>
+                    </div>
+                </div>
+            </div>
+            <p id="error-message-drop" class="hidden text-sm text-red-500 font-semibold">¡Por favor, elige una opcion de busqueda!</p>
+           
         </div>
+        <div id="div-result" class="w-full overflow-auto hidden flex h-full justify-center items-center flex-wrap gap-4">
+            <div id="card" class="p-4 max-w-[600px] w-[600px] rounded-lg bg-white hidden shadow-md flex items-center flex-col gap-3">
+                <img id="card-img" src=""  alt="" class="rounded-lg object-cover max-w-[150px]">
+                <p id="card-name" class=" font-bold"></p> 
+                <div class="w-full flex flex-col gap-3 ">
+                    <div class="space-y-1">
+                        <p class="text-sm font-semibold">Tags</p>
+                    <div id="card-div-tag" class="flex flex-wrap gap-2 ">
+                    </div> 
+                    </div>
+                    <div class="space-y-1">
+                        <p class="font-semibold text-sm">Ingredients</p>
+                        <div id="card-div-ingredients" class="flex flex-wrap gap-2 ">
+                        </div>  
+                       </div> 
+                   <div class="space-y-1">
+                    <p class="font-semibold text-sm">Instructions</p>
+                    <p id="card-instructions" class="text-sm"></p>   
+                   </div>                     
+                </div>        
+            </div>
+            <!-- <div id="cards" class="p-2 rounded-lg bg-white shadow-md flex flex-col items-center gap-2">
+                <img id="cards-img" src="" alt="">
+                <p id="cards-name" class=" font-bold"></p> 
+            </div> -->
+        </div>
+        <div id="div-results" class="w-full overflow-auto hidden flex h-full justify-center items-center flex-wrap gap-4"></div>
     </div>
 </body>
 

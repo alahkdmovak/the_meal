@@ -7,3 +7,29 @@ body {
     rgba(13, 218, 88, 1) 100%
   );
 }
+
+#div-result::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+#div-result::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+#div-result::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+  display: none;
+} 
+
+#div-result::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+#div-result::-webkit-scrollbar-thumb {
+  background-color: #16a34a;
+  border-radius: 20px;
+  border: 1px solid #f1f2f3;
+}
+
+#div-result::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}
